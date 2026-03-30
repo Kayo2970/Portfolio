@@ -22,7 +22,7 @@ export async function GET(request: Request) {
 
   // If already running, redirect using the same hostname
   if (activeProjects[id]) {
-    return NextResponse.redirect(`${protocol}://${hostname}:${activeProjects[id]}`);
+    return NextResponse.redirect(`${protocol}://${hostValue}/api/proxy/${activeProjects[id]}/`);
   }
 
   const projectDir = path.resolve(process.cwd(), '..', id);
@@ -56,7 +56,7 @@ export async function GET(request: Request) {
     });
     worker.unref();
 
-    return NextResponse.redirect(`${protocol}://${hostname}:${port}`);
+    return NextResponse.redirect(`${protocol}://${hostValue}/api/proxy/${port}/`);
   } catch (error: any) {
     console.error(error);
     return NextResponse.json({ error: 'Failed to start project', details: error?.message || error?.toString() }, { status: 500 });
