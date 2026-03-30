@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kayo Portal
 
-## Getting Started
+Kayo Portal is a private, single-page application (SPA) acting as a personal project launchpad and dashboard for Kayomarz M Pavri. It is not an outward-facing portfolio—it is an operations hub designed to provide immediate, frictionless access to live projects, servers, and digital infrastructure.
 
-First, run the development server:
+## 🚀 The Core Concept
+The portal exists to solve one problem: finding any active project in under 5 seconds. It hosts a responsive **Bento Grid** of interconnected project cards. Each card represents a live service (like self-hosted applications on TrueNAS, Next.js websites, or event microsites) and links directly to the target environment.
+
+## 🛠️ Tech Stack & Architecture
+- **Framework:** Next.js 14 (App Router)
+- **Styling:** Tailwind CSS (v4)
+- **Language:** TypeScript
+- **Animations:** Framer Motion (micro-interactions) & pure CSS 
+- **Icons:** Lucide React
+- **Authentication:** External — Handled entirely by Cloudflare Access before the traffic reaches the portal.
+
+## 🎨 Design System (Obsidian Minimalist)
+The layout is governed by five strict principles:
+1. **Speed is the feature**: No decorative fluff.
+2. **Cards are the interface**: No search bars or sidebars. The Grid is everything.
+3. **Hover reveals**: The cards show full descriptions and launch arrows on hover using smooth glassmorphic transformations.
+4. **Dark means dark**: A true black background (`#000000`). No toggle, no light mode.
+5. **Frictionless edits**: Everything is powered by a central config file.
+
+## ⚙️ Adding a New Project
+Adding a project to the dashboard requires exactly zero design changes:
+
+1. Drop a wide-aspect screenshot thumbnail of your project into the `public/projects/` folder.
+2. Edit `config/projects.ts` and add a new object to the array:
+```typescript
+{
+  id: "my-new-project",
+  name: "My Next Big Thing",
+  description: "A one sentence description of what this does.",
+  url: "https://my-project-url.com",
+  image: "/projects/my-screenshot.png",
+  status: "live", // 'live' | 'building' | 'offline'
+  featured: false // set to true to make the card double-size
+}
+```
+3. Commit and push.
+
+## 💻 Local Development
+First, clone the repository:
 
 ```bash
+git clone https://github.com/Kayo2970/Portfolio.git
+cd Portfolio
+```
+
+Install the dependencies:
+```bash
+npm install
+```
+
+Run the development server:
+```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
