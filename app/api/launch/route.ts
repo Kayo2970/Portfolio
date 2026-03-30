@@ -47,6 +47,15 @@ export async function GET(request: Request) {
 
     await new Promise(resolve => setTimeout(resolve, 5000));
     
+    // Launch server-side screenshot crawler dynamically completely in the background
+    const backendWorkerScript = path.resolve(process.cwd(), 'scripts', 'dynamic-screenshot.js');
+    const worker = spawn('node', [backendWorkerScript, id, `http://localhost:${port}`], {
+        detached: true,
+        stdio: 'ignore',
+        shell: true
+    });
+    worker.unref();
+
     return NextResponse.redirect(`${protocol}://${hostname}:${port}`);
   } catch (error: any) {
     console.error(error);
