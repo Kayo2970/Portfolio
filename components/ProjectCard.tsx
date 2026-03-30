@@ -32,10 +32,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
       href={targetUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group relative block overflow-hidden rounded-xl border border-border bg-surface hover:bg-surface-hover hover:border-border-hover hover:-translate-y-0.5 transition-all duration-300 ${project.featured ? 'col-span-1 md:col-span-2 md:row-span-2' : ''}`}
+      className={`group relative flex flex-col overflow-hidden rounded-xl border border-border bg-surface hover:bg-surface-hover hover:border-border-hover hover:-translate-y-0.5 transition-all duration-300 h-full w-full`}
     >
       {/* Thumbnail area */}
-      <div className={`relative w-full overflow-hidden ${project.featured ? 'h-64 md:h-80' : 'h-40 md:h-48'}`}>
+      <div className={`relative w-full flex-grow overflow-hidden ${project.featured ? 'min-h-[16rem] md:min-h-[20rem]' : 'h-40 md:h-48'}`}>
         <div className="absolute inset-0 bg-black/40 group-hover:bg-accent-glow transition-colors z-10"></div>
         {project.image && (
           <img 
