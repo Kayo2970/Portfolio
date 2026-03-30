@@ -2,7 +2,10 @@
 
 import { HeroSection } from '@/components/HeroSection';
 import { BentoGrid } from '@/components/BentoGrid';
-import { projects } from '@/config/projects';
+import projectsData from '@/config/projects.json';
+import { Project } from '@/lib/types';
+
+const projects = projectsData as Project[];
 
 export default function Home() {
   return (
