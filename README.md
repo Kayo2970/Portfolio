@@ -83,3 +83,6 @@ The Kayo Portal is engineered to run untouched for years. You should only consid
 - The project card count exceeds 20 and the Bento Grid becomes unnavigable (requiring the addition of a search bar or category filters).
 - You require Next.js architecture features not supported by simple static output (e.g., live server-side data fetching for ping status). 
 - To initiate a v2, provide an AI assistant with this `README.md`, your `config/projects.json`, and `page.tsx` to draft an upgrade path.
+
+### 6. AI Agent Handoff
+For seamless continuation of work across different devices or AI sessions, refer to the [ai_history.md](./ai_history.md) guide.
