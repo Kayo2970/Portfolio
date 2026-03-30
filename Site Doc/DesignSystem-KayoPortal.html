@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kayo Portal — Design System</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:           #000000;
+    --surface:      rgba(255,255,255,0.05);
+    --surface-hover:rgba(255,255,255,0.08);
+    --border:       rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.18);
+    --text-primary: #FFFFFF;
+    --text-muted:   #A0A0A0;
+    --accent:       #2563EB;
+    --accent-glow:  rgba(37,99,235,0.15);
+    --accent-soft:  rgba(37,99,235,0.08);
+    --green:        #16A34A;
+    --amber:        #D97706;
+    --red:          #DC2626;
+    --radius:       16px;
+    --radius-sm:    8px;
+    --font:         'Space Grotesk', sans-serif;
+    --mono:         'JetBrains Mono', monospace;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    display: flex; align-items: center; gap: 32px; height: 60px;
+  }
+  .nav-logo {
+    font-size: 14px; font-weight: 600; letter-spacing: 0.1em;
+    color: var(--text-primary); text-transform: uppercase;
+    margin-right: auto;
+  }
+  .nav-link {
+    font-size: 13px; color: var(--text-muted);
+    text-decoration: none; cursor: pointer;
+    transition: color 0.2s;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--text-primary); }
+
+  /* LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px 80px; }
+
+  /* SECTIONS */
+  .section { padding: 72px 0 0; }
+  .section-label {
+    font-size: 11px; letter-spacing: 0.15em; color: var(--accent);
+    text-transform: uppercase; font-weight: 600; margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: 32px; font-weight: 700; color: var(--text-primary);
+    margin-bottom: 8px; letter-spacing: -0.02em;
+  }
+  .section-sub {
+    font-size: 15px; color: var(--text-muted); margin-bottom: 48px;
+    max-width: 560px; line-height: 1.7;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 100px 0 72px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-eyebrow {
+    font-size: 11px; letter-spacing: 0.2em; color: var(--accent);
+    text-transform: uppercase; font-weight: 600; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 24px; height: 1px; background: var(--accent);
+  }
+  .hero-title {
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 700; letter-spacing: -0.03em;
+    line-height: 1.1; margin-bottom: 20px;
+    background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.6) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 16px; color: var(--text-muted); margin-bottom: 40px; max-width: 500px;
+  }
+  .hero-meta {
+    display: flex; gap: 32px; flex-wrap: wrap;
+  }
+  .meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .meta-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+  .meta-value { font-size: 14px; color: var(--text-primary); font-weight: 500; }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+  /* CARDS */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: all 0.3s ease;
+  }
+  .card:hover {
+    background: var(--surface-hover);
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+  }
+  .card-title {
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px;
+  }
+
+  /* COLOR SWATCHES */
+  .swatch-grid { display: flex; flex-direction: column; gap: 10px; }
+  .swatch-row {
+    display: flex; align-items: center; gap: 16px;
+    padding: 12px 16px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .swatch-dot {
+    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .swatch-info { flex: 1; }
+  .swatch-name { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+  .swatch-desc { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .swatch-hex {
+    font-family: var(--mono); font-size: 12px; color: var(--text-muted);
+    background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 4px;
+  }
+  .swatch-role {
+    font-size: 11px; color: var(--accent); font-weight: 500;
+    text-align: right; min-width: 100px;
+  }
+
+  /* TYPOGRAPHY SPECIMENS */
+  .type-specimen {
+    padding: 24px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    margin-bottom: 12px;
+    display: flex; align-items: flex-start; gap: 24px;
+  }
+  .type-label {
+    font-family: var(--mono); font-size: 11px; color: var(--text-muted);
+    min-width: 100px; padding-top: 4px;
+  }
+  .type-example { flex: 1; }
+
+  /* COMPONENT PREVIEWS */
+  .component-frame {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 140px; margin-bottom: 12px;
+    flex-direction: column; gap: 16px;
+  }
+  .component-note {
+    font-size: 12px; color: var(--text-muted); margin-bottom: 24px;
+    padding: 0 4px;
+  }
+
+  /* BENTO PREVIEW */
+  .bento-preview {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 12px;
+  }
+  .bento-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px; padding: 24px;
+    cursor: pointer; position: relative; overflow: hidden;
+    transition: all 0.3s ease;
+    min-height: 120px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .bento-card:hover {
+    background: rgba(37,99,235,0.1);
+    border-color: rgba(255,255,255,0.2);
+    box-shadow: 0 0 30px rgba(37,99,235,0.12);
+    transform: scale(1.015);
+  }
+  .bento-card.featured { grid-column: 1; grid-row: 1 / 3; min-height: 260px; }
+  .bento-icon {
+    font-size: 22px; margin-bottom: 12px; opacity: 0.7;
+  }
+  .bento-name {
+    font-size: 15px; font-weight: 600; color: var(--text-primary);
+  }
+  .bento-desc {
+    font-size: 12px; color: var(--text-muted); margin-top: 6px;
+    opacity: 0; transform: translateY(6px);
+    transition: all 0.25s ease;
+  }
+  .bento-card:hover .bento-desc {
+    opacity: 1; transform: translateY(0);
+  }
+  .bento-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 3px 8px; border-radius: 20px;
+  }
+  .badge-live { background: rgba(22,163,74,0.15); color: #4ade80; }
+  .badge-building { background: rgba(217,119,6,0.15); color: #fbbf24; }
+  .badge-offline { background: rgba(255,255,255,0.08); color: var(--text-muted); }
+  .bento-launch {
+    opacity: 0; position: absolute; top: 20px; right: 20px;
+    font-size: 16px; transition: opacity 0.25s;
+    color: var(--accent);
+  }
+  .bento-card:hover .bento-launch { opacity: 1; }
+
+  /* BUTTON PREVIEWS */
+  .btn-primary {
+    background: var(--accent); color: #fff;
+    border: none; border-radius: var(--radius-sm);
+    padding: 10px 20px; font-family: var(--font);
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent; color: var(--text-primary);
+    border: 1px solid var(--border-hover); border-radius: var(--radius-sm);
+    padding: 10px 20px; font-family: var(--font);
+    font-size: 14px; font-weight: 500; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-ghost:hover {
+    background: var(--surface-hover); border-color: rgba(255,255,255,0.3);
+  }
+
+  /* NAV PREVIEW */
+  .nav-preview {
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(20px);
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 0 24px; display: flex; align-items: center;
+    gap: 24px; height: 52px; width: 100%;
+  }
+  .nav-preview-logo {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; margin-right: auto; color: var(--text-primary);
+  }
+  .nav-preview-link {
+    font-size: 12px; color: var(--text-muted);
+  }
+
+  /* BACKGROUND PREVIEW */
+  .bg-preview {
+    border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--border); position: relative;
+    min-height: 160px; display: flex; align-items: center; justify-content: center;
+  }
+  .bg-gradient-demo {
+    background: radial-gradient(ellipse at 50% 0%, #111111 0%, #000000 60%);
+    width: 100%; height: 100%; position: absolute; top: 0; left: 0;
+  }
+  .bg-preview-text {
+    position: relative; z-index: 1; text-align: center;
+    font-size: 15px; color: var(--text-muted);
+  }
+
+  /* PRINCIPLES */
+  .principle {
+    padding: 20px 24px;
+    border-left: 2px solid var(--accent);
+    background: var(--accent-soft); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin-bottom: 12px;
+  }
+  .principle-title { font-size: 14px; font-weight: 600; color: var(--text-primary); margin-bottom: 4px; }
+  .principle-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+  /* TOKEN TABLE */
+  .token-table { width: 100%; border-collapse: collapse; }
+  .token-table th {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--text-muted); font-weight: 600; padding: 8px 12px;
+    border-bottom: 1px solid var(--border); text-align: left;
+  }
+  .token-table td {
+    padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 13px; color: var(--text-primary); vertical-align: middle;
+  }
+  .token-table tr:hover td { background: var(--surface); }
+  .token-code {
+    font-family: var(--mono); font-size: 12px; color: var(--accent);
+    background: var(--accent-soft); padding: 2px 8px; border-radius: 4px;
+  }
+
+  /* SITEMAP */
+  .sitemap-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 16px 20px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .sitemap-icon { font-size: 18px; }
+  .sitemap-info { flex: 1; }
+  .sitemap-page { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+  .sitemap-url { font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .sitemap-desc { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+  .sitemap-badge {
+    font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+    padding: 3px 8px; border-radius: 20px;
+    background: var(--accent-soft); color: var(--accent);
+  }
+
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--border); margin: 60px 0 0; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Kayo Portal — Design System</span>
+  <a class="nav-link" onclick="scroll('overview')">Overview</a>
+  <a class="nav-link" onclick="scroll('sitemap')">Sitemap</a>
+  <a class="nav-link" onclick="scroll('palette')">Palette</a>
+  <a class="nav-link" onclick="scroll('typography')">Type</a>
+  <a class="nav-link" onclick="scroll('components')">Components</a>
+  <a class="nav-link" onclick="scroll('backgrounds')">Backgrounds</a>
+  <a class="nav-link" onclick="scroll('principles')">Principles</a>
+</nav>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero" id="overview">
+    <div class="hero-eyebrow">Design System v1.0</div>
+    <h1 class="hero-title">Kayo Portal</h1>
+    <p class="hero-sub">Obsidian Minimalist personal project launchpad. Every decision serves one outcome: find any project in under 5 seconds.</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Domain</span>
+        <span class="meta-value">project.pavris.in</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Theme</span>
+        <span class="meta-value">Dark only — always</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Stack</span>
+        <span class="meta-value">Next.js 14 + TypeScript + Tailwind</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Access</span>
+        <span class="meta-value">Cloudflare Access</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Version</span>
+        <span class="meta-value">1.0 — 31 March 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SITEMAP -->
+  <section class="section" id="sitemap">
+    <div class="section-label">02 — Sitemap</div>
+    <h2 class="section-title">Page Overview</h2>
+    <p class="section-sub">One page does the job. Everything else is external.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="sitemap-card">
+        <div class="sitemap-icon">⊞</div>
+        <div class="sitemap-info">
+          <div class="sitemap-page">Portal Home</div>
+          <div class="sitemap-url">/</div>
+          <div class="sitemap-desc">Bento Grid of all active projects. Click a card to launch.</div>
+        </div>
+        <div><span class="sitemap-badge">Landing</span></div>
+        <div style="font-size:11px;color:var(--text-muted);">🔒 Cloudflare</div>
+      </div>
+      <div class="sitemap-card">
+        <div class="sitemap-icon">⚠</div>
+        <div class="sitemap-info">
+          <div class="sitemap-page">404 Error</div>
+          <div class="sitemap-url">/not-found</div>
+          <div class="sitemap-desc">Styled error page with back-to-portal button.</div>
+        </div>
+        <div><span class="sitemap-badge" style="background:rgba(255,255,255,0.05);color:var(--text-muted);">Error</span></div>
+        <div style="font-size:11px;color:var(--text-muted);">🔓 Open</div>
+      </div>
+      <div class="sitemap-card" style="border-style:dashed;opacity:0.5;">
+        <div class="sitemap-icon">＋</div>
+        <div class="sitemap-info">
+          <div class="sitemap-page">Future cards</div>
+          <div class="sitemap-url">External URLs only</div>
+          <div class="sitemap-desc">Each project opens in a new tab — not a page inside this app.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PALETTE -->
+  <section class="section" id="palette">
+    <div class="section-label">03 — Colour Palette</div>
+    <h2 class="section-title">Obsidian Colour System</h2>
+    <p class="section-sub">True black as foundation. Everything else floats above it. The portal is always dark — no toggle, no light mode.</p>
+    <div class="swatch-grid">
+      <div class="swatch-row">
+        <div class="swatch-dot" style="background:#000000;border:1px solid rgba(255,255,255,0.2);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">True Black</div>
+          <div class="swatch-desc">Page background — maximum contrast, cards float above it</div>
+        </div>
+        <div class="swatch-hex">#000000</div>
+        <div class="swatch-role">--color-bg</div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch-dot" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Glass Surface</div>
+          <div class="swatch-desc">Card background — frosted glass with backdrop-blur</div>
+        </div>
+        <div class="swatch-hex">rgba(255,255,255,0.05)</div>
+        <div class="swatch-role">--color-surface</div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch-dot" style="background:#FFFFFF;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Pure White</div>
+          <div class="swatch-desc">Headlines and card titles — 21:1 contrast ratio</div>
+        </div>
+        <div class="swatch-hex">#FFFFFF</div>
+        <div class="swatch-role">--color-text-primary</div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch-dot" style="background:#A0A0A0;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Muted White</div>
+          <div class="swatch-desc">Descriptions, meta labels, secondary text</div>
+        </div>
+        <div class="swatch-hex">#A0A0A0</div>
+        <div class="swatch-role">--color-text-muted</div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch-dot" style="background:#2563EB;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Electric Blue</div>
+          <div class="swatch-desc">Hover glows, active states, accent elements, links</div>
+        </div>
+        <div class="swatch-hex">#2563EB</div>
+        <div class="swatch-role">--color-accent</div>
+      </div>
+      <div class="swatch-row">
+        <div class="swatch-dot" style="background:rgba(255,255,255,0.08);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Glass Border</div>
+          <div class="swatch-desc">Card edges — delicate frosted outline, reinforces depth</div>
+        </div>
+        <div class="swatch-hex">rgba(255,255,255,0.08)</div>
+        <div class="swatch-role">--color-border</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:4px;">
+        <div class="swatch-row" style="flex-direction:column;gap:8px;align-items:flex-start;">
+          <div class="swatch-dot" style="background:#16A34A;width:24px;height:24px;"></div>
+          <div class="swatch-name" style="font-size:13px;">Live — Green</div>
+          <div class="swatch-hex" style="font-size:11px;">#16A34A</div>
+        </div>
+        <div class="swatch-row" style="flex-direction:column;gap:8px;align-items:flex-start;">
+          <div class="swatch-dot" style="background:#D97706;width:24px;height:24px;"></div>
+          <div class="swatch-name" style="font-size:13px;">Building — Amber</div>
+          <div class="swatch-hex" style="font-size:11px;">#D97706</div>
+        </div>
+        <div class="swatch-row" style="flex-direction:column;gap:8px;align-items:flex-start;">
+          <div class="swatch-dot" style="background:#555555;width:24px;height:24px;"></div>
+          <div class="swatch-name" style="font-size:13px;">Offline — Grey</div>
+          <div class="swatch-hex" style="font-size:11px;">#555555</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section class="section" id="typography">
+    <div class="section-label">04 — Typography</div>
+    <h2 class="section-title">Type Scale</h2>
+    <p class="section-sub">Space Grotesk for all UI text. JetBrains Mono for code, config values, and URL slugs. Clean geometry, confident weight.</p>
+
+    <div class="type-specimen">
+      <div class="type-label">Hero / H1<br>60px / 700</div>
+      <div class="type-example">
+        <div style="font-size:52px;font-weight:700;letter-spacing:-0.03em;line-height:1.05;color:#fff;">
+          Everything I'm<br>building.
+        </div>
+      </div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">Heading / H2<br>28px / 600</div>
+      <div class="type-example">
+        <div style="font-size:28px;font-weight:600;letter-spacing:-0.02em;color:#fff;">
+          Active Projects
+        </div>
+      </div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">Card Title<br>16px / 600</div>
+      <div class="type-example">
+        <div style="font-size:16px;font-weight:600;color:#fff;">LEADS Website</div>
+      </div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">Body / Desc<br>14px / 400</div>
+      <div class="type-example">
+        <div style="font-size:14px;color:var(--text-muted);line-height:1.6;">
+          The official LEADS Next Gen Centre website — self-hosted, live, CI/CD on TrueNAS.
+        </div>
+      </div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">Label / Meta<br>11px / 600 CAPS</div>
+      <div class="type-example">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);">
+          Status — Live
+        </div>
+      </div>
+    </div>
+    <div class="type-specimen">
+      <div class="type-label">Monospace<br>12px / 400</div>
+      <div class="type-example">
+        <div style="font-family:var(--mono);font-size:13px;color:var(--text-muted);">
+          config/projects.ts &nbsp;&nbsp;→&nbsp;&nbsp; id: "leads-website"
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section class="section" id="components">
+    <div class="section-label">05 — Components</div>
+    <h2 class="section-title">Live Component Previews</h2>
+    <p class="section-sub">Every component is interactive. Hover over project cards to see the reveal animation.</p>
+
+    <!-- NAVBAR -->
+    <h3 style="font-size:14px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;font-weight:600;">Navigation Bar</h3>
+    <div class="component-frame" style="background:transparent;border:1px solid var(--border);padding:0;overflow:hidden;border-radius:var(--radius-sm);">
+      <div class="nav-preview">
+        <span class="nav-preview-logo">Kayo Portal</span>
+        <span class="nav-preview-link">github.com/Kayo2970</span>
+      </div>
+    </div>
+    <div class="component-note">Sticky navigation with backdrop-blur. Glassmorphism effect on scroll. Only Kayomarz branding and GitHub link — no navigation items needed on a single-page app.</div>
+
+    <!-- BENTO GRID -->
+    <h3 style="font-size:14px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;font-weight:600;">Bento Grid — Project Cards</h3>
+    <div class="component-frame" style="flex-direction:column;align-items:stretch;padding:24px;min-height:320px;">
+      <div class="bento-preview">
+        <div class="bento-card featured">
+          <div>
+            <div class="bento-icon">🌐</div>
+            <div class="bento-name">LEADS Website</div>
+            <div class="bento-desc">Official LEADS Next Gen Centre site — self-hosted on TrueNAS, live via Cloudflare Tunnel.</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span class="bento-badge badge-live">● Live</span>
+            <span class="bento-launch">↗</span>
+          </div>
+        </div>
+        <div class="bento-card">
+          <div>
+            <div class="bento-icon">👤</div>
+            <div class="bento-name">Portfolio</div>
+            <div class="bento-desc">Personal portfolio — design, work, presence.</div>
+          </div>
+          <span class="bento-badge badge-building">◐ Building</span>
+          <span class="bento-launch">↗</span>
+        </div>
+        <div class="bento-card">
+          <div>
+            <div class="bento-icon">📅</div>
+            <div class="bento-name">BLS 2026</div>
+            <div class="bento-desc">Bharat Lead Summit — RUAS, April 10-11.</div>
+          </div>
+          <span class="bento-badge badge-live">● Live</span>
+          <span class="bento-launch">↗</span>
+        </div>
+        <div class="bento-card">
+          <div>
+            <div class="bento-icon">📊</div>
+            <div class="bento-name">Stock Screener</div>
+            <div class="bento-desc">Buffett-style Indian equity screener tool.</div>
+          </div>
+          <span class="bento-badge badge-building">◐ Building</span>
+          <span class="bento-launch">↗</span>
+        </div>
+        <div class="bento-card">
+          <div>
+            <div class="bento-icon">⚙</div>
+            <div class="bento-name">TrueNAS Admin</div>
+            <div class="bento-desc">Local homelab dashboard via Cloudflare Tunnel.</div>
+          </div>
+          <span class="bento-badge badge-live">● Live</span>
+          <span class="bento-launch">↗</span>
+        </div>
+      </div>
+    </div>
+    <div class="component-note">Featured card (2× tall) for the most active project. Cards open target blank on click. Hover reveals description + launch arrow. Status badge always visible. Add new cards by editing config/projects.ts.</div>
+
+    <!-- BUTTONS -->
+    <h3 style="font-size:14px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;font-weight:600;">Buttons</h3>
+    <div class="component-frame" style="flex-direction:row;gap:16px;flex-wrap:wrap;">
+      <button class="btn-primary">Launch Project ↗</button>
+      <button class="btn-ghost">Back to Portal</button>
+      <button class="btn-ghost" style="border-color:rgba(220,38,38,0.4);color:var(--text-muted);">Offline</button>
+    </div>
+    <div class="component-note">Primary button for card launch CTAs. Ghost button for the 404 back-to-portal. Offline variant for status display (non-interactive).</div>
+
+    <!-- STATUS BADGES -->
+    <h3 style="font-size:14px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;font-weight:600;">Status Badges</h3>
+    <div class="component-frame" style="flex-direction:row;gap:12px;">
+      <span class="bento-badge badge-live" style="font-size:12px;padding:5px 12px;">● Live</span>
+      <span class="bento-badge badge-building" style="font-size:12px;padding:5px 12px;">◐ Building</span>
+      <span class="bento-badge badge-offline" style="font-size:12px;padding:5px 12px;">○ Offline</span>
+    </div>
+    <div class="component-note">Status badges appear on every card. Driven by the status field in config/projects.ts. Green dot = live, amber half-circle = in progress, grey = offline/paused.</div>
+  </section>
+
+  <!-- BACKGROUNDS -->
+  <section class="section" id="backgrounds">
+    <div class="section-label">06 — Backgrounds</div>
+    <h2 class="section-title">Background Design</h2>
+    <p class="section-sub">The background earns its place. True black is the foundation — the hero gets a subtle radial lift. Nothing moves. Nothing competes with the cards.</p>
+    <div class="grid-2" style="gap:16px;">
+      <div>
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;font-weight:600;">Hero Area</div>
+        <div class="bg-preview" style="height:160px;">
+          <div class="bg-gradient-demo"></div>
+          <div class="bg-preview-text">
+            <div style="font-size:22px;font-weight:700;">Everything I'm building.</div>
+            <div style="font-size:13px;margin-top:6px;color:var(--text-muted);">Radial gradient — #111 → #000</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;font-weight:600;">Card Grid Area</div>
+        <div class="bg-preview" style="height:160px;">
+          <div style="background:#000;width:100%;height:100%;position:absolute;"></div>
+          <div class="bg-preview-text">
+            <div style="font-size:13px;color:var(--text-muted);">True black — #000000</div>
+            <div style="font-size:12px;margin-top:4px;color:rgba(255,255,255,0.3);">Static. Cards float above it.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:24px;">
+      <table class="token-table">
+        <tr>
+          <th>Page Section</th><th>Background</th><th>Technique</th><th>Motion?</th>
+        </tr>
+        <tr>
+          <td>Full page</td>
+          <td><span class="token-code">#000000</span></td>
+          <td>CSS background-color</td>
+          <td>None — static always</td>
+        </tr>
+        <tr>
+          <td>Hero area</td>
+          <td><span class="token-code">radial-gradient(ellipse at 50% 0%, #111 0%, #000 70%)</span></td>
+          <td>CSS radial gradient</td>
+          <td>None — static</td>
+        </tr>
+        <tr>
+          <td>Cards (base)</td>
+          <td><span class="token-code">rgba(255,255,255,0.05)</span></td>
+          <td>backdrop-filter: blur(12px)</td>
+          <td>Hover transition only</td>
+        </tr>
+        <tr>
+          <td>Cards (hover)</td>
+          <td><span class="token-code">rgba(37,99,235,0.10)</span></td>
+          <td>CSS transition 0.3s</td>
+          <td>Hover state only</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- CSS TOKENS -->
+  <section class="section">
+    <div class="section-label">07 — Token Reference</div>
+    <h2 class="section-title">CSS Custom Properties</h2>
+    <p class="section-sub">All colours are tokens in globals.css. Never use raw hex in components — always reference a token.</p>
+    <table class="token-table">
+      <tr><th>Token</th><th>Value</th><th>Used for</th></tr>
+      <tr><td><span class="token-code">--color-bg</span></td><td style="font-family:var(--mono);font-size:12px;">#000000</td><td style="color:var(--text-muted);">Page background</td></tr>
+      <tr><td><span class="token-code">--color-surface</span></td><td style="font-family:var(--mono);font-size:12px;">rgba(255,255,255,0.05)</td><td style="color:var(--text-muted);">Card backgrounds</td></tr>
+      <tr><td><span class="token-code">--color-border</span></td><td style="font-family:var(--mono);font-size:12px;">rgba(255,255,255,0.08)</td><td style="color:var(--text-muted);">Card borders</td></tr>
+      <tr><td><span class="token-code">--color-text-primary</span></td><td style="font-family:var(--mono);font-size:12px;">#FFFFFF</td><td style="color:var(--text-muted);">Headlines, card names</td></tr>
+      <tr><td><span class="token-code">--color-text-muted</span></td><td style="font-family:var(--mono);font-size:12px;">#A0A0A0</td><td style="color:var(--text-muted);">Descriptions, meta, labels</td></tr>
+      <tr><td><span class="token-code">--color-accent</span></td><td style="font-family:var(--mono);font-size:12px;">#2563EB</td><td style="color:var(--text-muted);">Hover glows, links, badges</td></tr>
+      <tr><td><span class="token-code">--color-accent-glow</span></td><td style="font-family:var(--mono);font-size:12px;">rgba(37,99,235,0.15)</td><td style="color:var(--text-muted);">Card hover background tint</td></tr>
+      <tr><td><span class="token-code">--color-status-live</span></td><td style="font-family:var(--mono);font-size:12px;">#16A34A</td><td style="color:var(--text-muted);">Live status badge</td></tr>
+      <tr><td><span class="token-code">--color-status-building</span></td><td style="font-family:var(--mono);font-size:12px;">#D97706</td><td style="color:var(--text-muted);">Building status badge</td></tr>
+    </table>
+  </section>
+
+  <!-- PRINCIPLES -->
+  <section class="section" id="principles">
+    <div class="section-label">08 — Design Principles</div>
+    <h2 class="section-title">What Guides Every Decision</h2>
+    <p class="section-sub">Five rules. Any design choice that breaks one of these is wrong, regardless of how good it looks.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <div class="principle">
+        <div class="principle-title">Speed is the feature.</div>
+        <div class="principle-desc">The portal exists to get you to your project in under 5 seconds. Every animation, every hover state, every piece of information on a card is measured against that outcome. Nothing decorative.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">Cards are the interface.</div>
+        <div class="principle-desc">There is no navigation, no search, no sidebar. The Bento Grid is the entire UX. Cards must communicate name, type, and status at a glance — before any hover or interaction.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">Hover reveals — it doesn't replace.</div>
+        <div class="principle-desc">The base card state must be complete and useful. Hover reveals the description and launch arrow, but a card stripped of its hover state should still be perfectly readable and identifiable.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">Dark means dark.</div>
+        <div class="principle-desc">True black (#000000), not dark grey. No light mode. No toggle. The Obsidian Minimalist aesthetic only works at maximum contrast — any compromise on the background colour breaks the glass card effect.</div>
+      </div>
+      <div class="principle">
+        <div class="principle-title">Adding a project must take under 10 minutes.</div>
+        <div class="principle-desc">The portal is only as useful as it is current. If adding a new card requires touching more than one file, the system is too complex. config/projects.ts is the single source of truth — push, and it's live.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+function scroll(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>
