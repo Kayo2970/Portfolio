@@ -23,9 +23,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
     }
   };
 
+  const targetUrl = project.url.includes('github.com') 
+    ? `/api/launch?id=${project.id}` 
+    : project.url;
+
   return (
     <a 
-      href={project.url}
+      href={targetUrl}
       target="_blank"
       rel="noopener noreferrer"
       className={`group relative block overflow-hidden rounded-xl border border-border bg-surface hover:bg-surface-hover hover:border-border-hover hover:-translate-y-0.5 transition-all duration-300 ${project.featured ? 'col-span-1 md:col-span-2 md:row-span-2' : ''}`}

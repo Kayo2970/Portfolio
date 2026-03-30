@@ -3,8 +3,8 @@
     "id": "leads-website",
     "name": "LEADS Website",
     "description": "The official LEADS Next Gen Centre website — self-hosted, live, CI/CD on TrueNAS.",
-    "url": "https://leads.pavris.in",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=LEADS+Website",
+    "url": "https://github.com/Kayo2970/leads-website",
+    "image": "/projects/leads-website.png",
     "status": "live",
     "featured": true
   },
@@ -13,139 +13,96 @@
     "name": "Portfolio",
     "description": "My personal portfolio site — design, work, and presence in one place.",
     "url": "https://github.com/Kayo2970/Portfolio",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=Portfolio",
-    "status": "building"
-  },
-  {
-    "id": "bls-2026",
-    "name": "BLS 2026",
-    "description": "Bharat Lead Summit 2026 — event microsite, RUAS Bengaluru, April 10-11.",
-    "url": "#",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=BLS+2026",
-    "status": "live"
-  },
-  {
-    "id": "stock-screener",
-    "name": "Stock Screener",
-    "description": "Buffett-style screener for Indian equities — Nifty 500 value investing tool.",
-    "url": "#",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=Stock+Screener",
-    "status": "building"
-  },
-  {
-    "id": "truenas-admin",
-    "name": "TrueNAS Admin",
-    "description": "Local homelab dashboard via Cloudflare Tunnel.",
-    "url": "#",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=TrueNAS+Admin",
-    "status": "live"
+    "image": "/projects/portfolio.png",
+    "status": "building",
+    "featured": true
   },
   {
     "id": "tv-tech",
     "name": "tv-tech",
     "description": "The tv-tech project repository.",
     "url": "https://github.com/Kayo2970/tv-tech",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=tv-tech",
-    "status": "building",
-    "featured": false
+    "image": "/projects/tv-tech.png",
+    "status": "building"
   },
   {
     "id": "clothing",
     "name": "clothing",
     "description": "The clothing project repository.",
     "url": "https://github.com/Kayo2970/clothing",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=clothing",
-    "status": "building",
-    "featured": false
+    "image": "/projects/clothing.png",
+    "status": "building"
   },
   {
     "id": "the-apple-project",
     "name": "the-apple-project",
     "description": "Interactive Apple product evolution timeline — iPhone, iPad, Apple Watch",
     "url": "https://github.com/Kayo2970/the-apple-project",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=the-apple-project",
-    "status": "building",
-    "featured": false
+    "image": "/projects/the-apple-project.png",
+    "status": "building"
   },
   {
     "id": "iphone-timeline",
     "name": "Iphone-timeline",
     "description": "The Iphone-timeline project repository.",
     "url": "https://github.com/Kayo2970/Iphone-timeline",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=Iphone-timeline",
-    "status": "building",
-    "featured": false
+    "image": "/projects/iphone-timeline.png",
+    "status": "offline"
   },
   {
     "id": "vapewebsite",
     "name": "vapewebsite",
     "description": "The vapewebsite project repository.",
     "url": "https://github.com/Kayo2970/vapewebsite",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=vapewebsite",
-    "status": "building",
-    "featured": false
+    "image": "/projects/vapewebsite.png",
+    "status": "offline"
   },
   {
     "id": "anti-test",
     "name": "anti-test",
     "description": "The anti-test project repository.",
     "url": "https://github.com/Kayo2970/anti-test",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=anti-test",
-    "status": "building",
-    "featured": false
+    "image": "/projects/anti-test.png",
+    "status": "offline"
   },
   {
     "id": "indibioteck",
     "name": "Indibioteck",
     "description": "The Indibioteck project repository.",
     "url": "https://github.com/Kayo2970/Indibioteck",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=Indibioteck",
-    "status": "building",
-    "featured": false
+    "image": "/projects/indibioteck.png",
+    "status": "offline"
   },
   {
     "id": "bls",
     "name": "BLS",
-    "description": "Bls clone ",
+    "description": "Bls clone",
     "url": "https://github.com/Kayo2970/BLS",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=BLS",
-    "status": "building",
-    "featured": false
+    "image": "/projects/bls.png",
+    "status": "offline"
   },
   {
     "id": "personal-project",
     "name": "Personal-Project",
     "description": "The Personal-Project project repository.",
     "url": "https://github.com/Kayo2970/Personal-Project",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=Personal-Project",
-    "status": "building",
-    "featured": false
+    "image": "/projects/personal-project.png",
+    "status": "offline"
   },
   {
     "id": "bls-2-0",
     "name": "Bls-2.0",
     "description": "The Bls-2.0 project repository.",
     "url": "https://github.com/Kayo2970/Bls-2.0",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=Bls-2.0",
-    "status": "building",
-    "featured": false
-  },
-  {
-    "id": "lessions",
-    "name": "Lessions",
-    "description": "Learining",
-    "url": "https://github.com/Kayo2970/Lessions",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=Lessions",
-    "status": "building",
-    "featured": false
+    "image": "/projects/bls-2.0.png",
+    "status": "offline"
   },
   {
     "id": "kayo2970",
     "name": "Kayo2970",
     "description": "Config files for my GitHub profile.",
     "url": "https://github.com/Kayo2970/Kayo2970",
-    "image": "https://placehold.co/800x600/111111/FFFFFF/png?text=Kayo2970",
-    "status": "building",
-    "featured": false
+    "image": "/projects/kayo2970.png",
+    "status": "offline"
   }
 ]
