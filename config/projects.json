@@ -1,5 +1,14 @@
 [
   {
+    "id": "economics-concepts",
+    "name": "Economics Explorer",
+    "description": "Premium High-end Interactive economics simulation platform featuring 8 foundational and managerial modules.",
+    "url": "https://github.com/Kayo2970/economics-concepts",
+    "image": "/projects/economics-concepts.png",
+    "status": "live",
+    "featured": true
+  },
+  {
     "id": "leads-website",
     "name": "LEADS Website",
     "description": "The official LEADS Next Gen Centre website — self-hosted, live, CI/CD on TrueNAS.",
