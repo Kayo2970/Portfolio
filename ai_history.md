@@ -10,11 +10,12 @@ The user is currently working on the **Portfolio** (Kayo Portal) project (locate
 - **Data Source:** The entire dashboard UI is data-driven, reading from `config/projects.json` rather than hardcoded cards.
 - **Sync System:** Uses a custom Node.js script (`scripts/sync.js`) that queries the GitHub API to automate adding new repos into the portal.
 
-### Recent Actions (March 30/31, 2026)
-1. **Global Sync:** Executed a batch `git pull` across all git-initialized repositories residing in the parent GitHub workspace directory.
-2. **Dynamic Project Launcher:** Created an API route (`app/api/launch/route.ts`) that handles incoming requests, safely runs `npm run dev` in the sibling project directory binding to `0.0.0.0` (for mobile/LAN support), and dynamically redirects the user. This effectively turned the portfolio into a local Ops Hub.
-3. **Automated Thumbnails:** Created a Puppeteer script (`scripts/screenshots.js`) that automatically captures real, high-quality screenshots from the running local dev servers and maps them to `projects.json`, avoiding generated placeholders.
-4. **Clothing Store Next.js Migration:** Fully implemented the Next.js frontend pages for the `clothing` project repo (`/collections`, `/collections/[slug]`, `/bespoke`, `/lookbook`) following the luxury high-end design specs, and fixed CSP configs for `images.unsplash.com`.
+3. **Architecture Evolution:** Redefined the Portfolio as a **Unified Command Center** for the entire `~/Github` workspace. Created [PORTFOLIO_ARCHITECTURE.md](./PORTFOLIO_ARCHITECTURE.md) to explain the hub-and-spoke integration strategy.
+4. **Economics Explorer Integration:**
+    - Fully implemented the 8-module suite in the `economics-concepts` repo.
+    - Generated a premium AI mockup for the launch tile.
+    - Integrated the project as a featured "live" project in `config/projects.json`.
+    - Created symlink and performed global Git sync to finalize the portal update.
 
 ## Next Steps for AI Agent
 When the user picks this back up on another device or a new AI session:

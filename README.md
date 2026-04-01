@@ -1,12 +1,12 @@
-# Kayo Portal
+# Kayo Portal (Combined Projects Hub)
 
-Kayo Portal is a private, single-page application (SPA) acting as a personal project launchpad and dashboard for Kayomarz M Pavri. It is not an outward-facing portfolio—it is an operations hub designed to provide immediate, frictionless access to live projects, servers, and digital infrastructure.
+Kayo Portal is a private, single-page application (SPA) acting as a **centralized project launchpad** and master dashboard for all projects in the `~/Github` workspace (e.g., Economics Explorer, Clothing Hub, TV Tech). It is an operations hub designed to provide immediate, frictionless access to live projects, servers, and digital infrastructure.
 
-## 🚀 How It Works Under The Hood
+## 🏗️ System Architecture
 
-The architecture of the Kayo Portal is designed for maximum performance, minimal maintenance, and completely automated synchronization.
+The architecture is a **Unified Command Center** designed for maximum performance, minimal maintenance, and completely automated synchronization. For a deep-dive into the integration logic, see the [Portfolio Architecture Guide](./PORTFOLIO_ARCHITECTURE.md).
 
-### 1. The Core Infrastructure
+### 1. Key Components
 - **Framework:** Next.js 14 (App Router) executing as a statically optimized application.
 - **Styling Pipeline:** Tailwind CSS v4 driven entirely by native CSS variables (the "Obsidian Minimalist" design system).
 - **Animations:** Framer Motion powers the entrance staggers and spring animations, while pure CSS handles the high-performance glassmorphic hover reveals.
